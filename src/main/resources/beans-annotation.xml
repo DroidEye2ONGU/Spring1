@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 指定 Spring IoC 容器扫描的包-->
+    <!-- <context:component-scan base-package="DroidEye.Annotation">
+     </context:component-scan>-->
+
+
+    <!-- 可以通过 resource-pattern 指定扫描的资源-->
+    <!--<context:component-scan base-package="DroidEye.Annotation"
+    resource-pattern="Repository/*.class"></context:component-scan>-->
+
+    <!-- context:execlude-filter type="annotation"子节点指定排除哪些指定表达式的组件 -->
+   <!-- <context:component-scan base-package="DroidEye.Annotation">
+        <context:exclude-filter type="annotation"
+                                expression="org.springframework.stereotype.Repository"/>
+    </context:component-scan>-->
+
+
+    <!-- context:include-filter type="annotation"子节点指定只包含哪些表达式的组件,子节点需要 use-default-filters="false"使用-->
+   <!-- <context:component-scan base-package="DroidEye.Annotation" use-default-filters="false">
+        <context:include-filter type="annotation"
+                                expression="org.springframework.stereotype.Repository"/>
+    </context:component-scan>-->
+
+    <!-- context:exclude-filter type="assignable" 指定排除表达式中的实现类的组件-->
+    <!--<context:component-scan base-package="DroidEye.Annotation">
+        <context:exclude-filter type="assignable"
+                                expression="DroidEye.Annotation.Repository.UserRepository"/>
+    </context:component-scan>-->
+
+    <!-- context:include-filter type="assignable" 指定只包含表达式中的实现类的组件 子节点需要 use-default-filters="false"使用-->
+   <!-- <context:component-scan base-package="DroidEye.Annotation" use-default-filters="false">
+        <context:include-filter type="assignable"
+                                expression="DroidEye.Annotation.Repository.UserRepository"/>
+    </context:component-scan>-->
+
+    <context:component-scan base-package="DroidEye.Annotation"></context:component-scan>
+</beans>

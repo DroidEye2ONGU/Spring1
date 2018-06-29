@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 通过静态工厂方法来配置bean. 注意:不是配置静态工厂方法类实例,而是配置bean实例-->
+    <!--
+        class 属性:指向静态工厂方法的全类名
+        factory-method: 指向静态工厂方法的名字
+        constructor-arg: 如果工厂方法需要传入参数,则使用 constructor-arg 来配置参数
+    -->
+    <bean id="car1" class="DroidEye.Factory.StaticCarFactory" factory-method="getCar">
+        <!-- 通过constructor-arg 标签设置静态工程方法的参数 -->
+        <constructor-arg value="Audi"/>
+    </bean>
+
+    <!-- 配置工厂的实例 -->
+    <bean id="carFactory" class="DroidEye.Factory.InstanceCarFactory"></bean>
+    <!-- 通过实力工厂来配置bean-->
+    <!--
+        factory-bean: 指向实力工厂方法bean
+        factory-method: 指向实力工厂方法的名字
+        constructor-arg: 如果工厂方法需要传入参数,则使用 constructor-arg 来配置参数
+    -->
+    <bean id="car2" factory-bean="carFactory" factory-method="getCar">
+        <constructor-arg value="Ford"/>
+    </bean>
+</beans>

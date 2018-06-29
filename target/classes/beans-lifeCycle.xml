@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+    Spring IoC容器对Bean的生命周期进行管理的过程
+    -通过构造器或工厂方法创建Bean实例
+    -为Bean的属性设置值和对其他Bean的引用(调用对应的set方法)
+    -(可选)将Bean实例传递给Bean后置处理器的postProcessBeforeInitialization方法
+    -调用Bean的初始化方法(在配置Bean的时候指定)
+    -(可选)将Bean实例传递给Bean后置处理器的postProcessAfterInitialization方法
+    -Bean可以使用了(接受到后置处理返回的Bean)
+    -当容器关闭时,调用Bean的销毁方法
+    -->
+
+
+    <!-- 在Bean 的声明里设置init-method和destroy-method属性,为Bean指定初始化和销毁方法-->
+    <bean id="car" class="DroidEye.Cycle.Car" init-method="init"
+            destroy-method="destroy">
+        <property name="brand" value="Audi"/>
+    </bean>
+
+    <!-- 实现BeanPostProcessor接口,并具体提供两个方法的实现,
+        Object postProcessBeforeInitialization(Object o, String s):在init-method 之前被调用
+        Object postProcessAfterInitialization(Object o, String s):在init-method 之后被调用
+        两个参数:
+        o: bean的实例本身
+        s: IoC容器中配置的bean的名字(id)
+        返回值:是实际上返回给用户的那个bean,
+        注意:可以在以上两个方法中修改返回的Bean,甚至可以返回一个新的Bean
+    -->
+    <!-- 配置bean 的后置处理器: 不需要配置id,IoC容器自动识别是一个BeanPostProcessor-->
+    <bean class="DroidEye.Cycle.MyBeanPostProcessor"></bean>
+
+</beans>

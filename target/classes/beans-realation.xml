@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 抽象bean: bean 的 abstract 属性为 true 的 bean. 这样的bean不能被IOC容器实例化,只用来被继承配置-->
+    <!-- abstract为ture的bean为其他bean的提供模版,模版中已经配置的属性,parent为模版bean的bean不用再配置-->
+    <!-- 若某一个bean的class属性没有指定,则该bean必须是一个抽象bean-->
+    <bean id="address" class="DroidEye.AutoWire.Address"
+          p:city="BeiJing^" p:street="WuDaoKou" abstract="true"/><!-- 如果不配置class属性,p标签报错但能运行 -->
+
+    <!-- bean 配置的继承:使用bean的parent属性指定继承哪个bean的配置-->
+    <bean id="address2" parent="address" p:city="Bejing" class="DroidEye.AutoWire.Address"
+          p:street="DaZhongSi"/>
+
+    <bean id="car" class="DroidEye.AutoWire.Car"
+          p:brand="Audi" p:price="300000"/>
+
+    <!-- 要求在配置Person时,必须有一个关联的car!换句话说,person这个bean依赖于Car这个bean -->
+    <!--
+    #Spring允许用户通过depends-on属性设定Bean前置依赖的bean,前置依赖的Bean
+    会在本Bean实例化之前创建好
+    #如果前置依赖于多个Bean,则可以通过逗号,空格或的方式配置Bean的名称
+    -->
+    <bean id="person" class="DroidEye.AutoWire.Person" depends-on="car,address"
+          p:name="Tom" p:address-ref="address2"/>
+
+</beans>
