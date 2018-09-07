@@ -11,7 +11,7 @@ public class UserService {
 
     private UserRepository userRepository;
 
-    /*
+    /**
     * #当自动装配时 使用@Autowired和@Resource的区别
     *   ①@Autowired是Spring框架中的注解,@Resource是JavaEE中的注解
     *   ②@Resource默认按照名称方式进行bean匹配，@Autowired默认按照类型方式进行bean匹配

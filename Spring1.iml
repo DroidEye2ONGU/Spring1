@@ -14,6 +14,7 @@
           <file>file://$MODULE_DIR$/src/main/resources/beans-factory.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/beans-beanFactory.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/beans-annotation.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/beans-generic-di.xml</file>
         </fileset>
       </configuration>
     </facet>

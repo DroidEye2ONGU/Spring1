@@ -1,0 +1,7 @@
+普通属性：@Value（value="..."）,这时候可以不写setter方法
+
+对象属性：@Resource（name = "...."）
+
+或者采用   @Autowired
+
+　　　　   @Qualifier(value = "plane")
